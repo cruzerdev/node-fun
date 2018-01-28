@@ -36,6 +36,13 @@ app.get('/',(req,res)=>{
     welcomeMsg:'Welocme to Express Home Page'
   });
 });
+app.get('/projects',(req,res)=>{
+  res.render('projects.hbs',{
+    pageTitle:'Project Page',
+    currentYear:new Date().getFullYear(),
+    welcomeMsg:'Welocme to Heroku Project.'
+  });
+});
 //json data
 app.get('/json',(req,res)=>{
 
