@@ -2,6 +2,8 @@ const express=require('express');
 var hbs=require('hbs');
 var fs=require('fs');
 var app=express();
+
+const port =process.env.PORT || 3000;
 app.set('view engine','hbs');
 hbs.registerPartials(__dirname +'/views/partials');
 //app.use(express.static(__dirname +'/public'));
@@ -21,9 +23,9 @@ app.use((req,res,next)=>{
 });
 //--------
 //Adding a Maintenance page middleware
-app.use((req,res,next)=>{
-  res.render('main.hbs');
-});
+// app.use((req,res,next)=>{
+//   res.render('main.hbs');
+// });
 app.use(express.static(__dirname +'/public'));
 app.get('/',(req,res)=>{
   //lstening a html data
@@ -44,7 +46,12 @@ app.get('/about',(req,res)=>{
     currentYear: new Date().getFullYear()
   });
 });
-app.listen(3000,()=>{
-  console.log('Server is set to port 3000.');
+app.listen(port,(err)=>{
+  if(err)
+  {
+    console.log('Unable to connect to Port');
+  }else {
+    console.log(`Server is set to port ${port}.`);
+  }
 });
 //When Express doesn't have some functionality we can allow it and make it by adding middleware.
